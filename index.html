@@ -156,29 +156,82 @@
     font-size:0.9rem;
     color:var(--olive);
   }
+  /* ---- Language toggle ---- */
+  body.lang-en .t-hi{ display:none; }
+  body.lang-hi .t-en{ display:none; }
+  .lang-switch{
+    position:fixed;
+    top:14px;
+    right:14px;
+    z-index:100;
+    background:#fffdf2;
+    border:1px solid var(--olive);
+    border-radius:20px;
+    display:flex;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(74,83,39,0.15);
+  }
+  .lang-switch button{
+    border:none;
+    background:transparent;
+    padding:8px 16px;
+    font-size:0.9rem;
+    font-family:inherit;
+    cursor:pointer;
+    color:var(--olive-dark);
+  }
+  .lang-switch button.active{
+    background:var(--olive-dark);
+    color:#fff;
+    font-weight:bold;
+  }
 </style>
 </head>
-<body>
+<body class="lang-hi">
+
+<div class="lang-switch">
+  <button id="btnHi" onclick="setLang('hi')">हिंदी</button>
+  <button id="btnEn" onclick="setLang('en')">EN</button>
+</div>
 
 <div class="hero">
   <div class="om">🕉️</div>
   <h1>Osho Vipasana Gram</h1>
-  <p class="tagline">A Spiritual Sanctuary in the Lap of Nature</p>
-  <p class="location">📍 Bharuch, Gujarat — On the banks of Narmada River</p>
+  <p class="tagline">
+    <span class="t-hi">प्रकृति की गोद में एक आध्यात्मिक स्थल</span>
+    <span class="t-en">A Spiritual Sanctuary in the Lap of Nature</span>
+  </p>
+  <p class="location">
+    <span class="t-hi">📍 भरूच, गुजरात — नर्मदा नदी के तट पर</span>
+    <span class="t-en">📍 Bharuch, Gujarat — On the banks of Narmada River</span>
+  </p>
+  <p style="display:inline-block;margin-top:10px;background:#fffdf2;color:var(--gold);border:1px solid var(--gold);padding:6px 16px;border-radius:20px;font-size:0.85rem;font-weight:bold;">
+    <span class="t-hi">🌱 यह एक प्रस्तावित (आगामी) आश्रम है — अभी संकल्प चरण में है</span>
+    <span class="t-en">🌱 This is a proposed (upcoming) ashram — currently in the vision stage</span>
+  </p>
 </div>
 
 <div class="container">
 
   <div class="card">
-    <h2>Ashram ke baare me</h2>
-    <p>Osho Vipasana Gram Narmada nadi ke kinare basa ek shant, prakritik dham hai — dhyan, swasthya aur sadgi bhare jeevan ke liye samarpit. Yahan Osho ke pravachan aur sahitya ka sangrah sabke liye sadaiv free rakha gaya hai.</p>
+    <h2>
+      <span class="t-hi">आश्रम के बारे में — हमारा संकल्प</span>
+      <span class="t-en">About the Ashram — Our Vision</span>
+    </h2>
+    <p class="t-hi"><strong>स्पष्ट जानकारी:</strong> ओशो विपासना ग्राम अभी बना हुआ आश्रम नहीं है — यह एक सपना है जो नर्मदा नदी के तट पर, भरूच (गुजरात) में, ध्यान, स्वास्थ्य और सरलता से भरे जीवन के लिए एक शांत स्थल बनाने का है। आप जो भी दान करते हैं, वह सीधा इसी आश्रम के निर्माण में लगाया जाएगा।</p>
+    <p class="t-en"><strong>Clear disclosure:</strong> Osho Vipasana Gram is not yet a built ashram — it is a dream to create a peaceful place on the banks of the Narmada River in Bharuch (Gujarat), dedicated to meditation, wellness and simple living. Any donation you make will go directly toward building this ashram.</p>
+
+    <p style="font-weight:bold;margin-bottom:6px;">
+      <span class="t-hi">प्रस्तावित सुविधाएँ (जो आगे बनाई जाएँगी):</span>
+      <span class="t-en">Proposed facilities (to be built):</span>
+    </p>
     <ul class="facilities">
-      <li>Meditation Centre</li>
-      <li>Ayurvedic Hospital</li>
-      <li>Organic Farming</li>
-      <li>Vruddha Ashram</li>
-      <li>Residential Living</li>
-      <li>Spiritual Library</li>
+      <li><span class="t-hi">ध्यान केंद्र</span><span class="t-en">Meditation Centre</span></li>
+      <li><span class="t-hi">आयुर्वेदिक अस्पताल</span><span class="t-en">Ayurvedic Hospital</span></li>
+      <li><span class="t-hi">जैविक खेती</span><span class="t-en">Organic Farming</span></li>
+      <li><span class="t-hi">वृद्धाश्रम</span><span class="t-en">Elder Care Home</span></li>
+      <li><span class="t-hi">आवासीय सुविधा</span><span class="t-en">Residential Living</span></li>
+      <li><span class="t-hi">आध्यात्मिक पुस्तकालय</span><span class="t-en">Spiritual Library</span></li>
     </ul>
     <div class="contact-row">
       <strong>Bharat J. Talpada</strong><br/>
@@ -187,26 +240,50 @@
   </div>
 
   <div class="card center">
-    <h2>Osho Google Drive — Free Library</h2>
-    <p>Osho ke pravachan, kitaabein aur audio/video sangrah — sabke liye bilkul <strong>free</strong>. Neeche button dabakar Drive access payein.</p>
-    <a id="driveBtn" href="#" class="drive-btn" onclick="return handleDriveAccess(event)">📂 Google Drive Access Payein</a>
-    <p style="font-size:0.85rem;color:var(--olive);margin-top:14px;">Ye sangrah hamesha muft rahega. Neeche diya gaya dan (donation) ka option poori tarah swaichik (voluntary) hai.</p>
+    <h2>
+      <span class="t-hi">ओशो गूगल ड्राइव — मुफ़्त पुस्तकालय</span>
+      <span class="t-en">Osho Google Drive — Free Library</span>
+    </h2>
+    <p class="t-hi">यह संग्रह (ओशो के प्रवचन, किताबें और ऑडियो/वीडियो) पहले से मौजूद है और सभी के लिए बिल्कुल <strong>मुफ़्त</strong> है — इसका आश्रम के निर्माण से कोई संबंध नहीं, यह हमेशा मुफ़्त रहेगा। नीचे बटन दबाकर ड्राइव एक्सेस पाएं।</p>
+    <p class="t-en">This collection (Osho's discourses, books, and audio/video) already exists and is completely <strong>free</strong> for everyone — it has nothing to do with the ashram's construction status; it will always remain free. Click the button below to get Drive access.</p>
+    <a id="driveBtn" href="#" class="drive-btn" onclick="return handleDriveAccess(event)">
+      <span class="t-hi">📂 गूगल ड्राइव एक्सेस पाएं</span>
+      <span class="t-en">📂 Get Google Drive Access</span>
+    </a>
+    <p style="font-size:0.85rem;color:var(--olive);margin-top:14px;">
+      <span class="t-hi">नीचे दिया गया दान (डोनेशन) का विकल्प पूरी तरह स्वैच्छिक है — दान न देने पर भी आपको ड्राइव एक्सेस पूरा मिलेगा।</span>
+      <span class="t-en">The donation option below is entirely voluntary — even without donating, you will get full access to the Drive.</span>
+    </p>
   </div>
 
   <div class="card center">
-    <h2>Ashram ke liye Dan (Donation)</h2>
+    <h2>
+      <span class="t-hi">आश्रम निर्माण के लिए दान</span>
+      <span class="t-en">Donate to Build the Ashram</span>
+    </h2>
     <div class="donation-note">
-      🙏 Agar aapke dil me ashram ke liye kuch dena ka bhaav hai, to aap niche apni ichha anusaar rashi daalkar GPay/UPI se seedha bhugtan kar sakte hain. Ye poori tarah swaichik hai — dan na dene par bhi aapko Drive access poora milega.
+      <span class="t-hi">🙏 ओशो विपासना ग्राम अभी सिर्फ एक विज़न है — अभी बना नहीं है। आप जो भी राशि देंगे, वह सीधा आश्रम बनाने (ज़मीन, निर्माण, सुविधाएं तैयार करने) में उपयोग होगी। यह पूरी तरह स्वैच्छिक है — दान न देने पर भी आपको ऊपर दिए गए ड्राइव लाइब्रेरी का एक्सेस पूरा मिलेगा।</span>
+      <span class="t-en">🙏 Osho Vipasana Gram is currently just a vision — it has not been built yet. Whatever amount you contribute will be used directly for building the ashram (land, construction, setting up facilities). This is completely voluntary — even without donating, you'll get full access to the Drive library above.</span>
     </div>
     <div id="qrcode">
       <img src="data:image/png;base64,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" alt="UPI Donation QR Code" width="200" height="200" style="border:6px solid #fff;border-radius:8px;box-shadow:0 2px 10px rgba(74,83,39,0.15);" />
     </div>
-    <p style="font-size:0.85rem;color:var(--olive);margin-top:8px;">Is QR ko kisi bhi UPI app (GPay/PhonePe/Paytm) se scan karke rashi khud daalein</p>
+    <p style="font-size:0.85rem;color:var(--olive);margin-top:8px;">
+      <span class="t-hi">इस QR को किसी भी UPI ऐप (GPay/PhonePe/Paytm) से स्कैन करके राशि खुद डालें</span>
+      <span class="t-en">Scan this QR with any UPI app (GPay/PhonePe/Paytm) and enter your own amount</span>
+    </p>
     <div style="margin-top:16px;">
-      <input type="number" id="amount" placeholder="₹ Amount" min="1" />
-      <button class="pay-btn" onclick="openGpay()">📱 Mobile par GPay Kholein</button>
+      <input type="number" id="amount" min="1" />
+      <button class="pay-btn" onclick="openGpay()">
+        <span class="t-hi">📱 मोबाइल पर GPay खोलें</span>
+        <span class="t-en">📱 Open GPay (Mobile)</span>
+      </button>
     </div>
-    <p style="margin-top:16px;">Ya seedha UPI ID par bhejein: <span class="upi-id">bharattalpada2425@okhdfcbank</span></p>
+    <p style="margin-top:16px;">
+      <span class="t-hi">या सीधा UPI ID पर भेजें:</span>
+      <span class="t-en">Or send directly to this UPI ID:</span>
+      <span class="upi-id">bharattalpada2425@okhdfcbank</span>
+    </p>
   </div>
 
 </div>
@@ -220,6 +297,17 @@
   const DRIVE_LINK = "https://drive.google.com/drive/folders/1diuqStRf7RX2QxyntecrEoGsIGy1rh7W";
   const UPI_ID = "bharattalpada2425@okhdfcbank";
   const PAYEE_NAME = "Bharat Talpada";
+
+  // ---- Language toggle ----
+  const AMOUNT_PLACEHOLDER = { hi: "₹ राशि", en: "₹ Amount" };
+  function setLang(lang){
+    document.body.className = "lang-" + lang;
+    document.documentElement.lang = lang;
+    document.getElementById("btnHi").classList.toggle("active", lang === "hi");
+    document.getElementById("btnEn").classList.toggle("active", lang === "en");
+    document.getElementById("amount").placeholder = AMOUNT_PLACEHOLDER[lang];
+  }
+  setLang("hi"); // default language
 
   // ---- CallMeBot WhatsApp notification (replace with your own API key) ----
   const NOTIFY_PHONE = "919601940724"; // WhatsApp number to notify (Bharat)
